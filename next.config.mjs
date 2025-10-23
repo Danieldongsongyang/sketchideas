@@ -28,6 +28,17 @@ const nextConfig = {
   async redirects() {
     return [];
   },
+  turbopack: {
+    resolveAlias: {
+      // fs: {
+      //   browser: './empty.ts', // We recommend to fix code imports before using this method
+      // },
+    },
+  },
+  experimental: {
+    turbopackFileSystemCacheForDev: true,
+  },
+  reactCompiler: true,
 };
 
 // Make sure experimental mdx flag is enabled
