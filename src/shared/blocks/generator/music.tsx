@@ -105,6 +105,9 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
   const [isLoadingAudio, setIsLoadingAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  // todo: get cost credits from settings
+  const costCredits = 10;
+
   // Client-side mounting state to prevent hydration mismatch
   const [isMounted, setIsMounted] = useState(false);
 
@@ -236,6 +239,16 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
   }, [taskId, isGenerating, generationStartTime]);
 
   const handleGenerate = async () => {
+    if (!user) {
+      setIsShowSignModal(true);
+      return;
+    }
+
+    if (!user.credits || user.credits.remainingCredits < costCredits) {
+      toast.error('Insufficient credits');
+      return;
+    }
+
     if (!provider || !model) {
       toast.error('Invalid provider or model');
       return;
@@ -567,7 +580,7 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
                 {!isMounted ? (
                   <div className="mb-6 flex items-center justify-between text-sm">
                     <span className="text-primary">
-                      {t('generator.credits_cost', { credits: 1 })}
+                      {t('generator.credits_cost', { credits: costCredits })}
                     </span>
                     <span className="text-foreground font-medium">
                       {t('generator.credits_remaining', { credits: 0 })}
@@ -578,7 +591,7 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
                   user.credits.remainingCredits > 0 ? (
                   <div className="mb-6 flex items-center justify-between text-sm">
                     <span className="text-primary">
-                      {t('generator.credits_cost', { credits: 1 })}
+                      {t('generator.credits_cost', { credits: costCredits })}
                     </span>
                     <span className="text-foreground font-medium">
                       {t('generator.credits_remaining', {
@@ -589,7 +602,7 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
                 ) : (
                   <div className="mb-6 flex items-center justify-between text-sm">
                     <span className="text-primary">
-                      {t('generator.credits_cost', { credits: 1 })},{' '}
+                      {t('generator.credits_cost', { credits: costCredits })},{' '}
                       {t('generator.credits_remaining', {
                         credits: user?.credits?.remainingCredits || 0,
                       })}

@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     }
 
     // todo: get cost credits from settings
-    const costCredits = 1;
+    const costCredits = 10;
 
     // check credits
     const remainingCredits = await getRemainingCredits(user.id);

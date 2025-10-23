@@ -79,7 +79,7 @@ export function Hero({
           </motion.div>
         )}
 
-        <div className="relative mx-auto max-w-5xl text-center">
+        <div className="relative mx-auto max-w-5xl px-4 text-center">
           {/* 标题 - 第2个元素 */}
           <motion.div {...createFadeInVariant(0.15)}>
             {texts && texts.length > 0 ? (

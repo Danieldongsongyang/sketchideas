@@ -75,7 +75,11 @@ export function LocaleDetector() {
     const preferredLocale = cacheGet(PREFERRED_LOCALE_KEY);
 
     // If user has previously clicked to switch locale, auto-switch to that preference
-    if (preferredLocale && preferredLocale !== currentLocale) {
+    if (
+      preferredLocale &&
+      preferredLocale !== currentLocale &&
+      locales.includes(preferredLocale)
+    ) {
       switchToLocale(preferredLocale);
       return;
     }
