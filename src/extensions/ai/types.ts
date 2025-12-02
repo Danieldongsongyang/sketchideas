@@ -38,6 +38,14 @@ export interface AIImage {
   imageUrl?: string;
 }
 
+export interface AIVideo {
+  id?: string;
+  createTime?: Date;
+  videoUrl?: string;
+  thumbnailUrl?: string;
+  duration?: number;
+}
+
 /**
  * AI generate params
  */
@@ -69,6 +77,7 @@ export enum AITaskStatus {
 export interface AITaskInfo {
   songs?: AISong[];
   images?: AIImage[];
+  videos?: AIVideo[];
   status?: string; // provider task status
   errorCode?: string;
   errorMessage?: string;

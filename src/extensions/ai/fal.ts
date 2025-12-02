@@ -10,6 +10,7 @@ import {
   AIProvider,
   AITaskResult,
   AITaskStatus,
+  AIVideo,
 } from './types';
 
 /**
@@ -45,9 +46,9 @@ export class FalProvider implements AIProvider {
   }: {
     params: AIGenerateParams;
   }): Promise<AITaskResult> {
-    const { model, prompt, options, callbackUrl } = params;
+    const { mediaType, model, prompt, options, callbackUrl } = params;
 
-    if (!params.mediaType) {
+    if (!mediaType) {
       throw new Error('mediaType is required');
     }
 
@@ -60,26 +61,12 @@ export class FalProvider implements AIProvider {
     }
 
     // build request params
-    let input: any = {
+    const input = this.formatInput({
+      mediaType,
+      model,
       prompt,
-    };
-
-    if (options) {
-      if (params.mediaType === AIMediaType.IMAGE) {
-        if (options.num) {
-          input.num_images = Number(options.num);
-        }
-        if (options.aspect_ratio) {
-          input.aspect_ratio = options.aspect_ratio;
-        }
-        if (options.output_format) {
-          input.output_format = options.output_format;
-        }
-        if (options.image_input && Array.isArray(options.image_input)) {
-          input.image_urls = options.image_input;
-        }
-      }
-    }
+      options,
+    });
 
     let apiUrl = `${this.baseUrl}/${model}`;
     const headers: Record<string, string> = {
@@ -96,6 +83,8 @@ export class FalProvider implements AIProvider {
     if (isValidCallbackUrl) {
       apiUrl += `?fal_webhook=${callbackUrl}`;
     }
+
+    console.log('fal input', apiUrl, input);
 
     const resp = await fetch(apiUrl, {
       method: 'POST',
@@ -125,9 +114,11 @@ export class FalProvider implements AIProvider {
   async query({
     taskId,
     model,
+    mediaType,
   }: {
     taskId: string;
     model?: string;
+    mediaType?: AIMediaType;
   }): Promise<AITaskResult> {
     // extract first two parts of model name for query url
     // e.g. fal-ai/bytedance/seedream/v4/edit -> fal-ai/bytedance
@@ -180,46 +171,95 @@ export class FalProvider implements AIProvider {
     const data = await resultResp.json();
 
     let images: AIImage[] | undefined = undefined;
+    let videos: AIVideo[] | undefined = undefined;
 
-    if (data.images && Array.isArray(data.images)) {
-      images = data.images.map((image: any) => ({
-        id: '',
-        createTime: new Date(),
-        imageUrl: image.url,
-      }));
+    if (mediaType === AIMediaType.VIDEO) {
+      // handle video output
+      if (data.video && data.video.url) {
+        videos = [
+          {
+            id: '',
+            createTime: new Date(),
+            videoUrl: data.video.url,
+          },
+        ];
+      } else if (data.videos && Array.isArray(data.videos)) {
+        videos = data.videos.map((video: any) => ({
+          id: '',
+          createTime: new Date(),
+          videoUrl: video.url,
+        }));
+      }
+    } else {
+      // handle image output (default)
+      if (data.images && Array.isArray(data.images)) {
+        images = data.images.map((image: any) => ({
+          id: '',
+          createTime: new Date(),
+          imageUrl: image.url,
+        }));
+      }
     }
 
     // save files to custom storage
-    if (
-      taskStatus === AITaskStatus.SUCCESS &&
-      images &&
-      images.length > 0 &&
-      this.configs.customStorage
-    ) {
-      const filesToSave: AIFile[] = [];
-      images.forEach((image, index) => {
-        if (image.imageUrl) {
-          filesToSave.push({
-            url: image.imageUrl,
-            contentType: 'image/png',
-            key: `fal/image/${getUuid()}.png`,
-            index: index,
-            type: 'image',
-          });
-        }
-      });
+    if (taskStatus === AITaskStatus.SUCCESS && this.configs.customStorage) {
+      // save images
+      if (images && images.length > 0) {
+        const filesToSave: AIFile[] = [];
+        images.forEach((image, index) => {
+          if (image.imageUrl) {
+            filesToSave.push({
+              url: image.imageUrl,
+              contentType: 'image/png',
+              key: `fal/image/${getUuid()}.png`,
+              index: index,
+              type: 'image',
+            });
+          }
+        });
 
-      if (filesToSave.length > 0) {
-        const uploadedFiles = await saveFiles(filesToSave);
-        if (uploadedFiles) {
-          uploadedFiles.forEach((file: AIFile) => {
-            if (file && file.url && images && file.index !== undefined) {
-              const image = images[file.index];
-              if (image) {
-                image.imageUrl = file.url;
+        if (filesToSave.length > 0) {
+          const uploadedFiles = await saveFiles(filesToSave);
+          if (uploadedFiles) {
+            uploadedFiles.forEach((file: AIFile) => {
+              if (file && file.url && images && file.index !== undefined) {
+                const image = images[file.index];
+                if (image) {
+                  image.imageUrl = file.url;
+                }
               }
-            }
-          });
+            });
+          }
+        }
+      }
+
+      // save videos
+      if (videos && videos.length > 0) {
+        const filesToSave: AIFile[] = [];
+        videos.forEach((video, index) => {
+          if (video.videoUrl) {
+            filesToSave.push({
+              url: video.videoUrl,
+              contentType: 'video/mp4',
+              key: `fal/video/${getUuid()}.mp4`,
+              index: index,
+              type: 'video',
+            });
+          }
+        });
+
+        if (filesToSave.length > 0) {
+          const uploadedFiles = await saveFiles(filesToSave);
+          if (uploadedFiles) {
+            uploadedFiles.forEach((file: AIFile) => {
+              if (file && file.url && videos && file.index !== undefined) {
+                const video = videos[file.index];
+                if (video) {
+                  video.videoUrl = file.url;
+                }
+              }
+            });
+          }
         }
       }
     }
@@ -229,6 +269,7 @@ export class FalProvider implements AIProvider {
       taskStatus,
       taskInfo: {
         images,
+        videos,
         status: statusData.status,
         errorCode: '',
         errorMessage: '',
@@ -265,5 +306,50 @@ export class FalProvider implements AIProvider {
       return model;
     }
     return `${parts[0]}/${parts[1]}`;
+  }
+
+  // format input
+  private formatInput({
+    mediaType,
+    model,
+    prompt,
+    options,
+  }: {
+    mediaType: AIMediaType;
+    model: string;
+    prompt: string;
+    options: any;
+  }): any {
+    let input: any = {
+      prompt,
+    };
+
+    if (!options) {
+      return input;
+    }
+
+    // input with all custom options
+    input = {
+      ...input,
+      ...options,
+    };
+
+    // image_input is the default options
+    if (options.image_input && Array.isArray(options.image_input)) {
+      if (['fal-ai/kling-video/o1/video-to-video/edit'].includes(model)) {
+        input.input_images = options.image_input;
+      } else {
+        input.image_url = options.image_input[0];
+      }
+      delete input.image_input;
+    }
+
+    // video_input is the default options
+    if (options.video_input && Array.isArray(options.video_input)) {
+      input.video_url = options.video_input[0];
+      delete input.video_input;
+    }
+
+    return input;
   }
 }
