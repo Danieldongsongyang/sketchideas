@@ -15,17 +15,23 @@ import { getCustomerService } from '@/shared/services/customer_service';
 const notoSansMono = Noto_Sans_Mono({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
+  preload: true,
 });
 
 const merriweather = Merriweather({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
+  weight: ['400', '700'],
   variable: '--font-serif',
+  display: 'swap',
+  preload: true,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+  preload: true,
 });
 
 export default async function RootLayout({
