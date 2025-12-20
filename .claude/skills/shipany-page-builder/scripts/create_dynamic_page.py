@@ -78,6 +78,28 @@ def _parse_csv(value: str) -> list[str]:
         return []
     return [p.strip() for p in raw.split(",") if p.strip()]
 
+def _sanitize_json_text(value: Any) -> str:
+    """
+    Ensure text is safe to embed in JSON:
+    - Coerce to string
+    - Remove ASCII control characters that can cause downstream tooling issues
+      (JSON serializer would escape some, but we keep the output clean)
+    - Ensure the result is valid UTF-8 (replace invalid sequences)
+    """
+    if value is None:
+        return ""
+    s = str(value)
+    # Drop NULL and other control chars except tab/newline/carriage-return.
+    s = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", s)
+    # Normalize newlines.
+    s = s.replace("\r\n", "\n").replace("\r", "\n")
+    # Ensure UTF-8 encodable text (replace invalid).
+    s = s.encode("utf-8", errors="replace").decode("utf-8", errors="replace")
+    return s
+
+def _sanitize_list(values: list[Any]) -> list[str]:
+    return [_sanitize_json_text(v) for v in values if _sanitize_json_text(v)]
+
 
 def _read_configured_locales(repo_root: Path) -> list[str]:
     """
@@ -183,11 +205,11 @@ def _build_page_payload(
 
     payload: dict[str, Any] = {
         "metadata": {
-            "title": title,
-            "description": description,
+            "title": _sanitize_json_text(title),
+            "description": _sanitize_json_text(description),
         },
         "page": {
-            "title": title,
+            "title": _sanitize_json_text(title),
             "show_sections": sections,
             "sections": {},
         },
@@ -199,8 +221,8 @@ def _build_page_payload(
         if section_key == "hero":
             out_sections["hero"] = {
                 "id": "hero",
-                "title": title,
-                "description": description,
+                "title": _sanitize_json_text(title),
+                "description": _sanitize_json_text(description),
                 "buttons": [{"title": "Get Started", "url": cta_url, "icon": "Zap"}],
                 # Always placeholder images (no /public edits)
                 "image": {
@@ -334,13 +356,22 @@ def main() -> int:
 
     route = _normalize_route(args.route)
     slug = _slug_from_route(route)
-    keywords = _parse_csv(args.keywords)
-    sections = _parse_csv(args.sections) or ["hero", "introduce", "benefits", "features", "faq", "cta"]
+    title = _sanitize_json_text(args.title)
+    description = _sanitize_json_text(args.description)
+    keywords = _sanitize_list(_parse_csv(args.keywords))
+    sections = _sanitize_list(_parse_csv(args.sections)) or [
+        "hero",
+        "introduce",
+        "benefits",
+        "features",
+        "faq",
+        "cta",
+    ]
 
     repo_root = _repo_root_from_this_file()
     configured_locales = _read_configured_locales(repo_root)
     if args.locales.strip():
-        requested = _parse_csv(args.locales)
+        requested = _sanitize_list(_parse_csv(args.locales))
         bad = [l for l in requested if l not in configured_locales]
         if bad:
             raise ValueError(f"Requested locales not configured in localeNames: {bad}")
@@ -362,8 +393,8 @@ def main() -> int:
         payload = _build_page_payload(
             locale=locale,
             base_locale=base_locale,
-            title=args.title,
-            description=args.description,
+            title=title,
+            description=description,
             keywords=keywords,
             slug=slug,
             cta_url=args.cta_url,

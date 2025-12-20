@@ -22,4 +22,6 @@
   - `/...` (EN)
   - `/zh/...` (ZH)
 
+## Validation (required)
 
+- Build must pass: `pnpm build`

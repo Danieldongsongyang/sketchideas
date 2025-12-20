@@ -43,6 +43,8 @@ See `references/00-guide.md`.
 2. Generate locale files (based on configured `localeNames`) and register `'pages/<slug>'`:
    - Use `scripts/create_dynamic_page.py`
 3. Quick validation checklist: `references/01-checklist.md`
+4. Validate build (required):
+   - Build: `pnpm build`
 
 ## Bundled script (recommended)
 

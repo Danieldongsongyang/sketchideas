@@ -31,6 +31,7 @@ Runtime message namespace:
 - Only create **new** page JSON files under `src/config/locale/messages/<locale>/pages/**` (one per configured locale).
 - Only update `src/config/locale/index.ts` by appending `'pages/<slug>'` to `localeMessagesPaths`.
 - **Images must be placeholders** (do not add real images to `public/`).
+- When writing JSON string content, avoid control/special characters that can break JSON parsing. Ensure generated output is valid JSON (the script sanitizes text before writing).
 
 ## Placeholder image rule
 
