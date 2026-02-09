@@ -2,6 +2,7 @@
   "page": {
     "show_sections": [
       "hero",
+      "sketch-ideas-spin",
       "logos",
       "introduce",
       "benefits",
@@ -15,106 +16,38 @@
     "sections": {
       "hero": {
         "id": "hero",
-        "title": "Ship AI Startups in hours, not days",
-        "highlight_text": "in hours",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups.<br/>Ship Fast with a variety of templates and components.",
-        "announcement": {
-          "badge": "New",
-          "title": "🎉 ShipAny Template Two",
-          "url": "/pricing"
-        },
-        "tip": "🎁 Special offer for the first 1000 users",
-        "buttons": [
-          {
-            "title": "Get Started",
-            "icon": "Zap",
-            "url": "/pricing",
-            "target": "_self",
-            "variant": "default"
-          },
-          {
-            "title": "Read Document",
-            "icon": "BookOpenText",
-            "url": "/docs",
-            "target": "_blank",
-            "variant": "outline"
-          }
-        ],
-        "show_avatars": true,
-        "avatars_tip": "999+ users are using ShipAny",
+        "title": "Sketch ideas",
+        "className": "pt-12 pb-6 md:pt-6 md:pb-0",
         "show_award": false,
-        "image": {
-          "src": "/imgs/features/admin.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
-        "image_invert": {
-          "src": "/imgs/features/admin-dark.png",
-          "alt": "hero",
-          "width": 1200,
-          "height": 800
-        },
+
+
         "background_image": {
-          "src": "/imgs/bg/tree.jpg",
+          "src": "/imgs/bg/cartoon.png",
           "alt": "hero"
         }
       },
-      "logos": {
-        "id": "logos",
-        "title": "ShipAny is built on the shoulders of giants",
-        "items": [
-          {
-            "title": "Next.js",
-            "image": {
-              "src": "/imgs/logos/nextjs.svg",
-              "alt": "Next.js"
-            }
-          },
-          {
-            "title": "React",
-            "image": {
-              "src": "/imgs/logos/react.svg",
-              "alt": "React"
-            }
-          },
-          {
-            "title": "TailwindCSS",
-            "image": {
-              "src": "/imgs/logos/tailwindcss.svg",
-              "alt": "TailwindCSS"
-            }
-          },
-          {
-            "title": "Shadcn/UI",
-            "image": {
-              "src": "/imgs/logos/shadcn.svg",
-              "alt": "Shadcn/UI"
-            }
-          },
-          {
-            "title": "Vercel",
-            "image": {
-              "src": "/imgs/logos/vercel.svg",
-              "alt": "Vercel"
-            }
-          }
-        ]
+      "sketch-ideas-spin": {
+        "id": "sketch-ideas-spin",
+        "className": "pt-12 pb-6 md:pt-1 md:pb-6",
+        "block": "sketch-ideas-spin",
+        "spin_delay_ms": 80
       },
+
+
       "introduce": {
-        "block": "features-list",
+        "block": "features-media",
         "id": "introduce",
-        "title": "What is ShipAny",
-        "label": "Introduce",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups, including templates, components, and documentation.",
+        "title": "What is Sketch Ideas",
+        "label": "Product",
+        "description": "A visual slot machine for sketch practice: fast spins, clear structure, and clean line-art references you can copy or download.",
         "image": {
           "src": "/imgs/features/landing-page.png",
           "alt": "introduce"
         },
         "items": [
           {
-            "title": "Ready-to-use Templates",
-            "description": "Choose from dozens of production-ready AI SaaS templates to quickly start your project.",
+            "title": "Visual Slot Spin",
+            "description": "Hit Spin to cycle rapid previews and land on a fresh prompt plus reference in under a second.",
             "icon": "RiNextjsFill",
             "image": {
               "src": "/imgs/features/1.png",
@@ -122,8 +55,8 @@
             }
           },
           {
-            "title": "Infrastructure Setup",
-            "description": "Get instant access to scalable infrastructure with best practices built-in.",
+            "title": "Difficulty Lanes",
+            "description": "Warm-up for single objects, Sketch for multi-object structure, Challenge for scenes and lighting.",
             "icon": "RiDatabase2Line",
             "image": {
               "src": "/imgs/features/2.png",
@@ -131,8 +64,8 @@
             }
           },
           {
-            "title": "Quick Deployment",
-            "description": "Deploy your AI SaaS application to production in hours, not days.",
+            "title": "Category Filters",
+            "description": "Objects, animals, characters, poses, landscape, architecture, sci-fi, fantasy.",
             "icon": "RiCloudyFill",
             "image": {
               "src": "/imgs/features/3.png",
@@ -140,8 +73,8 @@
             }
           },
           {
-            "title": "AI Integration",
-            "description": "Integrate AI into your project with ease using our built-in AI SDK.",
+            "title": "Pre-generated Line Art",
+            "description": "Curated, consistent style to reduce AI noise and boost trust.",
             "icon": "RiRobot2Line",
             "image": {
               "src": "/imgs/features/4.png",
@@ -154,13 +87,13 @@
       "benefits": {
         "block": "features-accordion",
         "id": "benefits",
-        "title": "Why Choose ShipAny",
+        "title": "Why it keeps you drawing",
         "label": "Benefits",
-        "description": "Get everything you need to launch your AI startup - from ready-to-use templates to technical support.",
+        "description": "Built to trigger momentum, reduce decision fatigue, and keep sessions long.",
         "items": [
           {
-            "title": "Complete Framework",
-            "description": "Built on Next.js with authentication, payments, and AI integration - everything works out of the box.",
+            "title": "Instant Momentum",
+            "description": "No scrolling or reading lists - just spin and draw.",
             "icon": "RiNextjsFill",
             "image": {
               "src": "/imgs/features/user-billing.png",
@@ -168,8 +101,8 @@
             }
           },
           {
-            "title": "Rich Templates Library",
-            "description": "Choose from various AI SaaS templates to kickstart your project - chatbots, image generation, and more.",
+            "title": "Trustworthy References",
+            "description": "Clean line art and structural prompts feel sketch-ready and clear.",
             "icon": "RiClapperboardAiLine",
             "image": {
               "src": "/imgs/features/admin-settings.png",
@@ -177,8 +110,8 @@
             }
           },
           {
-            "title": "Technical Guidance",
-            "description": "Get dedicated support and join our developer community to ensure your successful launch.",
+            "title": "Sticky Loop",
+            "description": "Next keeps you inside the same filter lane so you can iterate fast.",
             "icon": "RiCodeFill",
             "image": {
               "src": "/imgs/features/landing-page.png",
@@ -190,8 +123,8 @@
       "usage": {
         "block": "features-step",
         "id": "usage",
-        "title": "How to Launch with ShipAny",
-        "description": "Get your AI SaaS startup running in three simple steps:",
+        "title": "Your 15-spin warm-up",
+        "description": "Pick a lane, spin, and stay in flow:",
         "image": {
           "src": "/imgs/features/1.png",
           "alt": "usage"
@@ -200,32 +133,32 @@
         "text_align": "center",
         "items": [
           {
-            "title": "Get ShipAny",
-            "description": "Buy ShipAny with a one-time payment. Check your email for the code and documentation.",
+            "title": "Choose Difficulty",
+            "description": "Warm-up, Sketch, or Challenge based on how much structure you want.",
             "image": {
               "src": "/imgs/features/5.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Start Your Project",
-            "description": "Read the documentation and clone the code of ShipAny. Start building your AI SaaS startup.",
+            "title": "Select a Category",
+            "description": "Narrow to the subject you want to practice.",
             "image": {
               "src": "/imgs/features/6.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Customize Your Project",
-            "description": "Modify the template with your data and contents. Specific AI functionality needs.",
+            "title": "Spin for a Prompt",
+            "description": "Get a line-art reference plus a concise drawing prompt.",
             "image": {
               "src": "/imgs/features/7.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Deploy to Production",
-            "description": "Deploy your project to production with a few steps and start serving customers immediately.",
+            "title": "Copy, Download, Share",
+            "description": "Save the WebP, copy the prompt, or share to Pinterest or X.",
             "image": {
               "src": "/imgs/features/8.png",
               "alt": "usage"
@@ -236,166 +169,166 @@
       },
       "features": {
         "id": "features",
-        "title": "Key Features of ShipAny",
-        "description": "Everything you need to launch your AI SaaS startup quickly and efficiently.",
+        "title": "MVP features that matter",
+        "description": "Everything needed for fast, repeatable sketch practice.",
         "items": [
           {
-            "title": "Next.js Boilerplate",
-            "description": "Production-ready Next.js templates with SEO-friendly structure and i18n support.",
+            "title": "Slot-style spin",
+            "description": "0.5s spin animation with instant results.",
             "icon": "RiNextjsFill"
           },
           {
-            "title": "Authentication & Payments",
-            "description": "Integrated Google OAuth, one-tap login, and Stripe payment processing.",
+            "title": "Controlled randomness",
+            "description": "Pulls from a pre-generated pool with smart variety.",
             "icon": "RiKey2Fill"
           },
           {
-            "title": "Data Infrastructure",
-            "description": "Built-in Supabase integration for reliable and scalable data storage.",
+            "title": "Next without reset",
+            "description": "Keep spinning inside your current filters.",
             "icon": "RiDatabase2Line"
           },
           {
-            "title": "One-Click Deployment",
-            "description": "Seamless deployment to Vercel or Cloudflare with automated setup.",
+            "title": "Line art plus prompt",
+            "description": "Reference image paired with a crisp drawing prompt.",
             "icon": "RiCloudy2Fill"
           },
           {
-            "title": "Business Analytics",
-            "description": "Integrated Google Analytics and Search Console for tracking growth.",
+            "title": "One-click save",
+            "description": "Download WebP and copy the prompt with feedback.",
             "icon": "RiBarChart2Line"
           },
           {
-            "title": "AI-Ready Infrastructure",
-            "description": "Pre-configured AI integration with built-in credits system and API sales.",
+            "title": "Shareable",
+            "description": "Pinterest and X sharing with a ready share card.",
             "icon": "RiRobot2Line"
           }
         ]
       },
       "stats": {
         "id": "stats",
-        "title": "People Love ShipAny",
-        "description": "for it's easy to use and fast to ship.",
+        "title": "MVP success targets",
+        "description": "What we measure in the first 30 days.",
         "items": [
           {
-            "title": "999+",
-            "description": "Customers"
+            "title": "3-5 min",
+            "description": "Avg session time"
           },
           {
-            "title": "200+",
-            "description": "Blocks"
+            "title": "15+",
+            "description": "Spins per session"
           },
           {
-            "title": "50+",
-            "description": "Templates"
+            "title": "<=1.5s",
+            "description": "Average load time"
           }
         ],
         "className": "bg-muted"
       },
       "testimonials": {
         "id": "testimonials",
-        "title": "What Users Say About ShipAny",
-        "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
+        "title": "What artists say",
+        "description": "Short sessions, real momentum, repeatable practice.",
         "items": [
           {
-            "name": "David Chen",
-            "role": "Founder of AIWallpaper.shop",
-            "quote": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
+            "name": "Avery Chen",
+            "role": "Sketch club mentor",
+            "quote": "The slot format removes decision fatigue. My warm-ups are faster and I actually start drawing.",
             "image": {
               "src": "/imgs/avatars/1.png",
-              "alt": "david"
+              "alt": "avery"
             }
           },
           {
-            "name": "Rachel Kim",
-            "role": "CTO at HeyBeauty.ai",
-            "quote": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
+            "name": "Maya Patel",
+            "role": "Illustration student",
+            "quote": "Warm-up mode is perfect. One click and I have a clean reference to study.",
             "image": {
               "src": "/imgs/avatars/2.png",
-              "alt": "rachel"
+              "alt": "maya"
             }
           },
           {
-            "name": "Marcus Thompson",
-            "role": "Solo Developer",
-            "quote": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+            "name": "Jonas Reed",
+            "role": "Concept artist",
+            "quote": "Challenge mode gives me scene structure fast. I spin, block in, and move on.",
             "image": {
               "src": "/imgs/avatars/3.png",
-              "alt": "marcus"
+              "alt": "jonas"
             }
           },
           {
-            "name": "Sofia Garcia",
-            "role": "CEO of Melodisco",
-            "quote": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
+            "name": "Elena Park",
+            "role": "Freelance character artist",
+            "quote": "The line art feels trustworthy. It is clean enough to study without the AI noise.",
             "image": {
               "src": "/imgs/avatars/4.png",
-              "alt": "sofia"
+              "alt": "elena"
             }
           },
           {
-            "name": "James Wilson",
-            "role": "Tech Lead at GPTs.works",
-            "quote": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
+            "name": "Kai Morgan",
+            "role": "Urban sketcher",
+            "quote": "Category filters keep me focused. I can stay on architecture for a full session.",
             "image": {
               "src": "/imgs/avatars/5.png",
-              "alt": "james"
+              "alt": "kai"
             }
           },
           {
-            "name": "Anna Zhang",
-            "role": "Startup Founder",
-            "quote": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
+            "name": "Rin Nakamura",
+            "role": "Art coach",
+            "quote": "Students stick around longer because Next keeps the flow going.",
             "image": {
               "src": "/imgs/avatars/6.png",
-              "alt": "anna"
+              "alt": "rin"
             }
           }
         ]
       },
       "faq": {
         "id": "faq",
-        "title": "Frequently Asked Questions About ShipAny",
-        "description": "Have another question? Contact us on Discord or by email.",
+        "title": "Frequently asked questions",
+        "description": "Have another question? Reach out and we will help.",
         "items": [
           {
-            "question": "What exactly is ShipAny and how does it work?",
-            "answer": "ShipAny is a comprehensive NextJS boilerplate designed specifically for building AI SaaS startups. It provides ready-to-use templates, infrastructure setup, and deployment tools that help you launch your AI business in hours instead of days."
+            "question": "Are the references AI-generated?",
+            "answer": "Yes. The line-art pool is pre-generated and curated for consistency and speed. Images are for practice reference only."
           },
           {
-            "question": "Do I need advanced technical skills to use ShipAny?",
-            "answer": "While basic programming knowledge is helpful, ShipAny is designed to be developer-friendly. Our templates and documentation make it easy to get started, even if you're not an expert in AI or cloud infrastructure."
+            "question": "Can I use the images commercially?",
+            "answer": "The references are intended for learning and practice, not for commercial use."
           },
           {
-            "question": "What types of AI SaaS can I build with ShipAny?",
-            "answer": "ShipAny supports a wide range of AI applications, from content generation to data analysis tools. Our templates cover popular use cases like AI chatbots, content generators, image processing apps, and more."
+            "question": "Why line art instead of full renders?",
+            "answer": "Line art keeps the focus on structure and reduces the artificial look that can distract practice."
           },
           {
-            "question": "How long does it typically take to launch with ShipAny?",
-            "answer": "With ShipAny, you can have a working prototype in hours and a production-ready application in hours. Our one-click deployment and pre-configured infrastructure significantly reduce the traditional months-long development cycle."
+            "question": "How do the difficulty levels differ?",
+            "answer": "Warm-up is a single object with a clear action or angle. Sketch adds 2-4 objects and spatial relationships. Challenge is a full scene with lighting, mood, and camera language."
           },
           {
-            "question": "What's included in the ShipAny infrastructure?",
-            "answer": "ShipAny provides a complete infrastructure stack including authentication, database setup, API integration, payment processing, and scalable cloud deployment. Everything is pre-configured following industry best practices."
+            "question": "Can I request new categories?",
+            "answer": "Yes. We expand the pool based on demand and add new category packs over time."
           },
           {
-            "question": "Can I customize the templates to match my brand?",
-            "answer": "Absolutely! All ShipAny templates are fully customizable. You can modify the design, features, and functionality to match your brand identity and specific business requirements while maintaining the robust underlying infrastructure."
+            "question": "How fast is a spin?",
+            "answer": "Results are designed to appear within about one second, using a cached pre-generated pool."
           }
         ]
       },
       "cta": {
         "id": "cta",
-        "title": "Ship your first AI SaaS Startup",
-        "description": "Start from here, ship with ShipAny.",
+        "title": "Start your sketch streak today",
+        "description": "Open the slot, pick a lane, and spin your next idea.",
         "buttons": [
           {
-            "title": "Get ShipAny",
-            "url": "https://shipany.ai",
-            "target": "_blank",
+            "title": "Open the Slot",
+            "url": "/sketch-ideas-slot",
+            "target": "_self",
             "icon": "Zap"
           },
           {
-            "title": "Read Document",
+            "title": "Read the Brief",
             "url": "/docs",
             "target": "_blank",
             "variant": "outline",
@@ -407,7 +340,7 @@
       "subscribe": {
         "id": "subscribe",
         "title": "Subscribe to our newsletter",
-        "description": "Get the latest news and updates from ShipAny.",
+        "description": "Get the latest news and updates from Sketch Ideas.",
         "submit": {
           "input": {
             "placeholder": "Enter your email"
@@ -419,6 +352,7 @@
         },
         "className": "bg-muted"
       }
+      
     }
   }
 }
