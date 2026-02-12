@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "title": "Sketch to Image",
+    "description": "Turn rough sketches into polished AI-generated images."
+  },
+  "page": {
+    "title": "Sketch to Image",
+    "description": "Turn rough sketches into polished AI-generated images."
+  },
+  "generator": {
+    "title": "Sketch to Image",
+    "description": "Turn rough sketches into polished AI-generated images.",
+    "tabs": {
+      "text-to-image": "Image to Sketch",
+      "image-to-image": "Sketch to Image"
+    },
+    "form": {
+      "provider": "Provider",
+      "model": "Model",
+      "select_provider": "Select Provider",
+      "select_model": "Select Model",
+      "prompt": "Prompt",
+      "prompt_placeholder": "Transform white line art into fully colored illustration. Preserve all original line work as crisp, clean black outlines on top of rendered colors. Apply realistic color palette with proper shading and lighting—soft gradients for skin tones, material-appropriate textures for fabrics (cotton, silk, leather), metals, and environmental elements. Maintain accurate light source direction with coherent shadows and highlights. Add atmospheric depth through background color harmony and subtle environmental effects. Ensure colors enhance the original line art structure without obscuring details, achieving a polished, professional illustration look that bridges clean linework with vibrant, dimensional color rendering. Final output: high-resolution colored artwork with intact line precision and rich, balanced color application.",
+      "reference_image": "Reference Image",
+      "reference_image_placeholder": "Upload reference images, support multiple images",
+      "some_images_failed_to_upload": "Some images failed to upload, please delete them and re-upload",
+      "prompt_too_long": "Prompt is too long, please delete some content"
+    },
+    "generate": "Generate Images",
+    "checking_account": "Checking Account...",
+    "loading": "Loading...",
+    "generating": "Generating...",
+    "sign_in_to_generate": "Sign In to Generate Image",
+    "credits_cost": "Cost {credits} credits",
+    "credits_remaining": "Remaining {credits} credits",
+    "buy_credits": "Buy Credits",
+    "progress": "Progress",
+    "generated_images": "Image Preview",
+    "ready_to_generate": "Ready to Generate",
+    "ready_for_generating": "Ready for Generating",
+    "no_images_generated": "No Images Generated"
+  }
+}

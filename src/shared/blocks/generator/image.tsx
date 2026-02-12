@@ -45,6 +45,10 @@ interface ImageGeneratorProps {
   maxImages?: number;
   maxSizeMB?: number;
   srOnlyTitle?: string;
+  translationNamespace?: string;
+  allowedTabs?: ImageGeneratorTab[];
+  defaultTab?: ImageGeneratorTab;
+  showTabs?: boolean;
   className?: string;
 }
 
@@ -207,14 +211,31 @@ export function ImageGenerator({
   maxImages = 9,
   maxSizeMB = 5,
   srOnlyTitle,
+  translationNamespace = 'ai.image.generator',
+  allowedTabs = ['text-to-image', 'image-to-image'],
+  defaultTab = 'text-to-image',
+  showTabs = true,
   className,
 }: ImageGeneratorProps) {
-  const t = useTranslations('ai.image.generator');
+  const t = useTranslations(translationNamespace);
 
-  const [activeTab, setActiveTab] =
-    useState<ImageGeneratorTab>('text-to-image');
+  const safeAllowedTabs = useMemo<ImageGeneratorTab[]>(() => {
+    const filtered = allowedTabs.filter(
+      (tab): tab is ImageGeneratorTab =>
+        tab === 'text-to-image' || tab === 'image-to-image'
+    );
+    return filtered.length > 0 ? Array.from(new Set(filtered)) : ['text-to-image'];
+  }, [allowedTabs]);
 
-  const [costCredits, setCostCredits] = useState<number>(2);
+  const safeDefaultTab = safeAllowedTabs.includes(defaultTab)
+    ? defaultTab
+    : safeAllowedTabs[0];
+
+  const [activeTab, setActiveTab] = useState<ImageGeneratorTab>(safeDefaultTab);
+
+  const [costCredits, setCostCredits] = useState<number>(
+    safeDefaultTab === 'text-to-image' ? 2 : 4
+  );
   const [provider, setProvider] = useState(PROVIDER_OPTIONS[0]?.value ?? '');
   const [model, setModel] = useState(MODEL_OPTIONS[0]?.value ?? '');
   const [prompt, setPrompt] = useState('');
@@ -249,6 +270,9 @@ export function ImageGenerator({
 
   const handleTabChange = (value: string) => {
     const tab = value as ImageGeneratorTab;
+    if (!safeAllowedTabs.includes(tab)) {
+      return;
+    }
     setActiveTab(tab);
 
     const availableModels = MODEL_OPTIONS.filter(
@@ -261,11 +285,7 @@ export function ImageGenerator({
       setModel('');
     }
 
-    if (tab === 'text-to-image') {
-      setCostCredits(2);
-    } else {
-      setCostCredits(4);
-    }
+    setCostCredits(tab === 'text-to-image' ? 2 : 4);
   };
 
   const handleProviderChange = (value: string) => {
@@ -316,6 +336,14 @@ export function ImageGenerator({
     () => referenceImageItems.some((item) => item.status === 'uploading'),
     [referenceImageItems]
   );
+
+  useEffect(() => {
+    if (!safeAllowedTabs.includes(activeTab)) {
+      setActiveTab(safeDefaultTab);
+      return;
+    }
+    setCostCredits(activeTab === 'text-to-image' ? 2 : 4);
+  }, [activeTab, safeAllowedTabs, safeDefaultTab]);
 
   const hasReferenceUploadError = useMemo(
     () => referenceImageItems.some((item) => item.status === 'error'),
@@ -620,16 +648,22 @@ export function ImageGenerator({
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 pb-8">
-                <Tabs value={activeTab} onValueChange={handleTabChange}>
-                  <TabsList className="bg-primary/10 grid w-full grid-cols-2">
-                    <TabsTrigger value="text-to-image">
-                      {t('tabs.text-to-image')}
-                    </TabsTrigger>
-                    <TabsTrigger value="image-to-image">
-                      {t('tabs.image-to-image')}
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
+                {showTabs && safeAllowedTabs.length > 1 && (
+                  <Tabs value={activeTab} onValueChange={handleTabChange}>
+                    <TabsList className="bg-primary/10 grid w-full grid-cols-2">
+                      {safeAllowedTabs.includes('text-to-image') && (
+                        <TabsTrigger value="text-to-image">
+                          {t('tabs.text-to-image')}
+                        </TabsTrigger>
+                      )}
+                      {safeAllowedTabs.includes('image-to-image') && (
+                        <TabsTrigger value="image-to-image">
+                          {t('tabs.image-to-image')}
+                        </TabsTrigger>
+                      )}
+                    </TabsList>
+                  </Tabs>
+                )}
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">

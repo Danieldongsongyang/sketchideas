@@ -8,12 +8,12 @@ import { DynamicPage } from '@/shared/types/blocks/landing';
 export const revalidate = 3600;
 
 export const generateMetadata = getMetadata({
-  title: 'Image to Sketch',
-  metadataKey: 'ai.image_to_sketch.metadata',
-  canonicalUrl: '/image-to-sketch',
+  title: 'AI Image Generator',
+  metadataKey: 'ai.ai_image_generator.metadata',
+  canonicalUrl: '/ai-image-generator',
 });
 
-export default async function ImageToSketchPage({
+export default async function AiImageGeneratorPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -22,8 +22,8 @@ export default async function ImageToSketchPage({
   setRequestLocale(locale);
 
   // get ai image data
-  const t = await getTranslations('ai.image_to_sketch');
-  const pageTitle = 'Image to Sketch';
+  const t = await getTranslations('ai.ai_image_generator');
+  const pageTitle = 'AI Image Generator';
 
   // build page sections
   const page: DynamicPage = {
@@ -40,10 +40,7 @@ export default async function ImageToSketchPage({
         component: (
           <ImageGenerator
             srOnlyTitle={pageTitle}
-            translationNamespace="ai.image_to_sketch.generator"
-            allowedTabs={['image-to-image']}
-            defaultTab="image-to-image"
-            showTabs={false}
+            translationNamespace="ai.ai_image_generator.generator"
           />
         ),
       },

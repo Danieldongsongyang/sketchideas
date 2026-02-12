@@ -29,9 +29,28 @@
           "icon": "DollarSign"
         },
         {
-          "title": "Image to Sketch",
-          "url": "/image-to-sketch",
-          "icon": "Pencil"
+          "title": "Sketch Generator",
+          "icon": "Pencil",
+          "children": [
+            {
+              "title": "Image to Sketch",
+              "description": "Turn photos into clean sketch lines",
+              "url": "/image-to-sketch",
+              "icon": "Image"
+            },
+            {
+              "title": "Sketch to Image",
+              "description": "Generate styled images from sketches",
+              "url": "/sketch-to-image",
+              "icon": "WandSparkles"
+            },
+            {
+              "title": "AI Image Generator",
+              "description": "Create images from AI prompts",
+              "url": "/ai-image-generator",
+              "icon": "Sparkles"
+            }
+          ]
         }
       ]
     },

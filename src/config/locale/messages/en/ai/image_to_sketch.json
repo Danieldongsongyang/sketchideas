@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "title": "Image to Sketch",
+    "description": "Convert photos into clean sketch-style line art with AI."
+  },
+  "page": {
+    "title": "Image to Sketch",
+    "description": "Convert photos into clean sketch-style line art with AI."
+  },
+  "generator": {
+    "title": "Image to Sketch",
+    "description": "Convert photos into clean sketch-style line art with AI.",
+    "tabs": {
+      "text-to-image": "Image to Sketch",
+      "image-to-image": "Sketch to Image"
+    },
+    "form": {
+      "provider": "Provider",
+      "model": "Model",
+      "select_provider": "Select Provider",
+      "select_model": "Select Model",
+      "prompt": "Prompt",
+      "prompt_placeholder": "Black and white line art style, pure line expression with no color blocks or grayscale gradients. Lines are crisp and sharp with clean, unblurred edges; clear contrast in line weight (bold, heavy contour lines for main subjects, delicate thin lines for decorative details); moderate line density with precise rendering of key structures (such as muscle anatomy, fabric folds, and scene perspective), free of redundant stray lines; the artwork balances realism with clean precision, featuring complete contours and clearly distinguishable detail textures (such as fabric weaves and metallic lines); overall style is concise and powerful with distinct visual hierarchy, background lines can be appropriately simplified to emphasize the main subject. Digital line art, high-definition resolution (≥4K), pure white background, no noise, lines without breaks or bleeding.",
+      "reference_image": "Reference Image",
+      "reference_image_placeholder": "Upload reference images, support multiple images",
+      "some_images_failed_to_upload": "Some images failed to upload, please delete them and re-upload",
+      "prompt_too_long": "Prompt is too long, please delete some content"
+    },
+    "generate": "Generate Images",
+    "checking_account": "Checking Account...",
+    "loading": "Loading...",
+    "generating": "Generating...",
+    "sign_in_to_generate": "Sign In to Generate Image",
+    "credits_cost": "Cost {credits} credits",
+    "credits_remaining": "Remaining {credits} credits",
+    "buy_credits": "Buy Credits",
+    "progress": "Progress",
+    "generated_images": "Image Preview",
+    "ready_to_generate": "Ready to Generate",
+    "ready_for_generating": "Ready for Generating",
+    "no_images_generated": "No Images Generated"
+  }
+}
