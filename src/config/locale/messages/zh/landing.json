@@ -35,7 +35,7 @@
             {
               "title": "AI 图片生成器",
               "description": "使用 AI 生成图片",
-              "url": "/ai-image-generator",
+              "url": "/image-to-sketch",
               "icon": "RiImage2Line"
             },
             {

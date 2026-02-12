@@ -502,7 +502,7 @@ export function SketchIdeasSpin({
                     className="rounded-full bg-[#C98C86] px-7 text-[#fff9f1] hover:bg-[#B67973]"
                   >
                     <Sparkles className="size-4" />
-                    SPIN
+                    FREE SPIN
                   </Button>
                 </div>
                 <div className="justify-self-center whitespace-nowrap rounded-full border border-[#dcb8b5]/85 bg-[#f1e0de]/78 px-4 py-2 text-sm text-[#6d5351] dark:border-zinc-100/15 dark:bg-zinc-950/45 dark:text-zinc-100/85 sm:justify-self-end">

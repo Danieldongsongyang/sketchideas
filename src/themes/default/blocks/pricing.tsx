@@ -10,20 +10,12 @@ import { PaymentModal } from '@/shared/blocks/payment/payment-modal';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card';
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import { useAppContext } from '@/shared/contexts/app';
 import { getCookie } from '@/shared/lib/cookie';
 import { cn } from '@/shared/lib/utils';
@@ -203,6 +195,11 @@ export function Pricing({
   };
 
   const handlePayment = async (item: PricingItem) => {
+    if ((item.amount || 0) <= 0) {
+      window.location.href = item.button?.url || '/';
+      return;
+    }
+
     if (!user) {
       setIsShowSignModal(true);
       return;
@@ -324,54 +321,77 @@ export function Pricing({
     }
   }, [section.items]);
 
+  const visibleItems =
+    section.items?.filter((item) => !item.group || item.group === group) || [];
+
   return (
     <section
       id={section.id}
-      className={cn('py-24 md:py-36', section.className, className)}
+      className={cn(
+        'relative py-16 md:py-24',
+        section.className,
+        className
+      )}
     >
-      <div className="mx-auto mb-12 px-4 text-center md:px-8">
-        {section.sr_only_title && (
-          <h1 className="sr-only">{section.sr_only_title}</h1>
-        )}
-        <h2 className="mb-6 text-3xl font-bold text-pretty lg:text-4xl">
-          {section.title}
-        </h2>
-        <p className="text-muted-foreground mx-auto mb-4 max-w-xl lg:max-w-none lg:text-lg">
-          {section.description}
-        </p>
-      </div>
-
       <div className="container">
-        {section.groups && section.groups.length > 0 && (
-          <div className="mx-auto mt-8 mb-16 flex w-full justify-center md:max-w-lg">
-            <Tabs value={group} onValueChange={setGroup} className="">
-              <TabsList>
+        <div className="rounded-3xl border border-[#b9c8db]/70 bg-[linear-gradient(145deg,rgba(248,251,255,0.95),rgba(233,241,251,0.92))] p-6 shadow-[0_20px_50px_rgba(58,75,96,0.12)] md:p-10">
+          <div className="mx-auto max-w-3xl text-center">
+            {section.sr_only_title && (
+              <h1 className="sr-only">{section.sr_only_title}</h1>
+            )}
+            <h2 className="text-3xl font-bold text-balance text-[#243245] md:text-5xl">
+              {section.title}
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-[#4b5c73] md:text-lg">
+              {section.description}
+            </p>
+          </div>
+
+          {section.groups && section.groups.length > 0 && (
+            <div className="mx-auto mt-8 flex w-full justify-center">
+              <div className="w-full text-center">
+                <p className="mb-3 text-xs font-semibold tracking-[0.18em] text-[#6d7f97] uppercase">
+                  Billing Cycle
+                </p>
+              <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-[#c4d2e3] bg-white/80 p-2 shadow-[0_8px_20px_rgba(56,74,97,0.1)]">
                 {section.groups.map((item, i) => {
+                  const selected = group === item.name;
                   return (
-                    <TabsTrigger key={i} value={item.name || ''}>
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setGroup(item.name || '')}
+                      className={cn(
+                        'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all',
+                        selected
+                          ? 'bg-[#20242e] text-white'
+                          : 'text-[#4f6078] hover:bg-[#eef3fb]'
+                      )}
+                    >
                       {item.title}
                       {item.label && (
-                        <Badge className="ml-2">{item.label}</Badge>
+                        <Badge className="h-5 rounded-full border-0 bg-[#c98c86] px-2 text-[10px] text-white">
+                          {item.label}
+                        </Badge>
                       )}
-                    </TabsTrigger>
+                    </button>
                   );
                 })}
-              </TabsList>
-            </Tabs>
-          </div>
-        )}
+              </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div
-          className={`mx-auto mt-0 grid w-full gap-6 md:grid-cols-${
-            section.items?.filter((item) => !item.group || item.group === group)
-              ?.length
-          }`}
+          className={cn(
+            'mx-auto mt-8 grid w-full gap-6',
+            visibleItems.length === 1 && 'max-w-xl',
+            visibleItems.length === 2 && 'max-w-5xl md:grid-cols-2',
+            visibleItems.length >= 3 && 'md:grid-cols-3'
+          )}
         >
-          {section.items?.map((item: PricingItem, idx) => {
-            if (item.group && item.group !== group) {
-              return null;
-            }
-
+          {visibleItems.map((item: PricingItem, idx) => {
             let isCurrentPlan = false;
             if (
               currentSubscription &&
@@ -387,132 +407,136 @@ export function Pricing({
               currencyState?.selectedCurrency || item.currency;
             const currencies = getCurrenciesFromItem(item);
 
+            const isFeatured = Boolean(item.is_featured);
+
             return (
-              <Card key={idx} className="relative">
+              <div
+                key={item.product_id || idx}
+                className={cn(
+                  'relative flex h-full flex-col rounded-2xl border bg-white p-6 shadow-[0_14px_35px_rgba(57,75,95,0.12)] transition-transform md:p-7',
+                  isFeatured
+                    ? 'border-2 border-[#c98c86] shadow-[0_18px_42px_rgba(201,140,134,0.28)] md:-translate-y-1'
+                    : 'border-[#c2d1e3]'
+                )}
+              >
                 {item.label && (
-                  <span className="absolute inset-x-0 -top-3 mx-auto flex h-6 w-fit items-center rounded-full bg-linear-to-br/increasing from-purple-400 to-amber-300 px-3 py-1 text-xs font-medium text-amber-950 ring-1 ring-white/20 ring-offset-1 ring-offset-gray-950/5 ring-inset">
+                  <span className="absolute top-4 right-4 inline-flex items-center rounded-full bg-[#20242e] px-3 py-1 text-xs font-semibold tracking-wide text-white">
                     {item.label}
                   </span>
                 )}
 
-                <CardHeader>
-                  <CardTitle className="font-medium">
-                    <h3 className="text-sm font-medium">{item.title}</h3>
-                  </CardTitle>
-
-                  <div className="my-3 flex items-baseline gap-2">
-                    {displayedItem.original_price && (
-                      <span className="text-muted-foreground text-sm line-through">
-                        {displayedItem.original_price}
-                      </span>
-                    )}
-
-                    <div className="my-3 block text-2xl font-semibold">
-                      <span className="text-primary">
-                        {displayedItem.price}
-                      </span>{' '}
-                      {displayedItem.unit ? (
-                        <span className="text-muted-foreground text-sm font-normal">
-                          {displayedItem.unit}
-                        </span>
-                      ) : (
-                        ''
-                      )}
-                    </div>
-
-                    {currencies.length > 1 && (
-                      <Select
-                        value={selectedCurrency}
-                        onValueChange={(currency) =>
-                          handleCurrencyChange(item.product_id, currency)
-                        }
-                      >
-                        <SelectTrigger
-                          size="sm"
-                          className="border-muted-foreground/30 bg-background/50 h-6 min-w-[60px] px-2 text-xs"
-                        >
-                          <SelectValue placeholder="Currency" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {currencies.map((currency) => (
-                            <SelectItem
-                              key={currency.currency}
-                              value={currency.currency}
-                              className="text-xs"
-                            >
-                              {currency.currency.toUpperCase()}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  </div>
-
-                  <CardDescription className="text-sm">
+                <div>
+                  <h3 className="text-xl font-semibold text-[#1f2d40]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 min-h-12 text-sm leading-6 text-[#5b6c83]">
                     {item.description}
-                  </CardDescription>
-                  {item.tip && (
-                    <span className="text-muted-foreground text-sm">
-                      {item.tip}
+                  </p>
+                </div>
+
+                <div className="mt-5 flex items-end gap-2">
+                  {displayedItem.original_price && (
+                    <span className="text-sm text-[#8a99ac] line-through">
+                      {displayedItem.original_price}
                     </span>
                   )}
-
-                  {isCurrentPlan ? (
-                    <Button
-                      variant="outline"
-                      className="mt-4 h-9 w-full px-4 py-2"
-                      disabled
-                    >
-                      <span className="hidden text-sm md:block">
-                        {t('current_plan')}
-                      </span>
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={() => handlePayment(item)}
-                      disabled={isLoading}
-                      className={cn(
-                        'focus-visible:ring-ring inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
-                        'mt-4 h-9 w-full px-4 py-2',
-                        'bg-primary text-primary-foreground hover:bg-primary/90 border-[0.5px] border-white/25 shadow-md shadow-black/20'
-                      )}
-                    >
-                      {isLoading && item.product_id === productId ? (
-                        <>
-                          <Loader2 className="size-4 animate-spin" />
-                          <span className="block">{t('processing')}</span>
-                        </>
-                      ) : (
-                        <>
-                          {item.button?.icon && (
-                            <SmartIcon
-                              name={item.button?.icon as string}
-                              className="size-4"
-                            />
-                          )}
-                          <span className="block">{item.button?.title}</span>
-                        </>
-                      )}
-                    </Button>
+                  <span className="text-4xl font-bold text-[#1b2636]">
+                    {displayedItem.price}
+                  </span>
+                  {displayedItem.unit && (
+                    <span className="pb-1 text-sm text-[#6e7f96]">
+                      {displayedItem.unit}
+                    </span>
                   )}
-                </CardHeader>
+                </div>
 
-                <CardContent className="space-y-4">
-                  <hr className="border-dashed" />
+                {currencies.length > 1 && (
+                  <div className="mt-3">
+                    <Select
+                      value={selectedCurrency}
+                      onValueChange={(currency) =>
+                        handleCurrencyChange(item.product_id, currency)
+                      }
+                    >
+                      <SelectTrigger
+                        size="sm"
+                        className="h-8 w-[96px] border-[#c4d2e3] bg-white text-xs"
+                      >
+                        <SelectValue placeholder="Currency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {currencies.map((currency) => (
+                          <SelectItem
+                            key={currency.currency}
+                            value={currency.currency}
+                            className="text-xs"
+                          >
+                            {currency.currency.toUpperCase()}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
+                <p className="mt-3 min-h-[3.5rem] text-sm text-[#6e7f96]">
+                  {item.tip || ' '}
+                </p>
+
+                {isCurrentPlan ? (
+                  <Button
+                    variant="outline"
+                    className="mt-5 h-10 w-full rounded-full border-[#c2d1e3] bg-white text-sm text-[#2b3a4f]"
+                    disabled
+                  >
+                    <span className="block">{t('current_plan')}</span>
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => handlePayment(item)}
+                    disabled={isLoading}
+                    className={cn(
+                      'mt-5 h-10 w-full rounded-full text-sm font-semibold',
+                      isFeatured
+                        ? 'bg-[#20242e] text-white hover:bg-[#11151d]'
+                        : 'bg-[#e8eef8] text-[#1f2d40] hover:bg-[#d8e3f5]'
+                    )}
+                  >
+                    {isLoading && item.product_id === productId ? (
+                      <>
+                        <Loader2 className="size-4 animate-spin" />
+                        <span className="block">{t('processing')}</span>
+                      </>
+                    ) : (
+                      <>
+                        {item.button?.icon && (
+                          <SmartIcon
+                            name={item.button?.icon as string}
+                            className="size-4"
+                          />
+                        )}
+                        <span className="block">{item.button?.title}</span>
+                      </>
+                    )}
+                  </Button>
+                )}
+
+                <div className="mt-6 border-t border-dashed border-[#d2deec] pt-5">
                   {item.features_title && (
-                    <p className="text-sm font-medium">{item.features_title}</p>
+                    <p className="mb-3 text-sm font-semibold text-[#2a3a4d]">
+                      {item.features_title}
+                    </p>
                   )}
-                  <ul className="list-outside space-y-3 text-sm">
-                    {item.features?.map((item, index) => (
-                      <li key={index} className="flex items-center gap-2">
-                        <Check className="size-3" />
-                        {item}
+                  <ul className="space-y-2.5 text-sm text-[#4f6078]">
+                    {item.features?.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <Check className="mt-0.5 size-4 text-[#1e7d47]" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>

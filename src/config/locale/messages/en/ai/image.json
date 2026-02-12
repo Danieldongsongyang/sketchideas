@@ -11,8 +11,9 @@
     "title": "Image Generator",
     "description": "Generate images with AI models, support text-to-image and image-to-image.",
     "tabs": {
-      "text-to-image": "Text to Image",
-      "image-to-image": "Image to Image"
+      "text-to-image": "Image to Sketch",
+      "image-to-image": "Sketch to Image"
+      
     },
     "form": {
       "provider": "Provider",

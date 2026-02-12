@@ -14,7 +14,7 @@
     "nav": {
       "items": [
         {
-          "title": "Spin",
+          "title": "Free Spin",
           "url": "/#sketch-ideas-spin",
           "icon": "Sparkles"
         },
@@ -24,34 +24,14 @@
           "icon": "Box"
         },
         {
-          "title": "Prompt",
-          "url": "/ai-image-generator",
-          "icon": "Pencil"
+          "title": "Pricing",
+          "url": "/pricing",
+          "icon": "DollarSign"
         },
         {
-          "title": "Content",
-          "icon": "FileText",
-          "children": [
-            {
-              "title": "Blog",
-              "description": "Read tutorials and workflows for sketch ideas practice.",
-              "url": "/blog",
-              "icon": "Newspaper"
-            },
-            {
-              "title": "Updates",
-              "description": "Track new prompt packs and feature releases.",
-              "url": "/updates",
-              "icon": "Clock"
-            },
-            {
-              "title": "Docs",
-              "description": "Learn the product setup and spin workflow.",
-              "url": "/docs",
-              "target": "_blank",
-              "icon": "BookOpenText"
-            }
-          ]
+          "title": "Image to Sketch",
+          "url": "/image-to-sketch",
+          "icon": "Pencil"
         }
       ]
     },

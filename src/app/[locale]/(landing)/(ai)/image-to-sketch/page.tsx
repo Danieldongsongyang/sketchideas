@@ -9,10 +9,10 @@ export const revalidate = 3600;
 
 export const generateMetadata = getMetadata({
   metadataKey: 'ai.image.metadata',
-  canonicalUrl: '/ai-image-generator',
+  canonicalUrl: '/image-to-sketch',
 });
 
-export default async function AiImageGeneratorPage({
+export default async function ImageToSketchPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
