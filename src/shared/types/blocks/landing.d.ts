@@ -78,7 +78,7 @@ export interface Features extends Section {}
 
 export interface Stats extends Section {}
 
-export interface Showcases extends Section {}
+export interface Shop extends Section {}
 
 export interface FAQItem extends SectionItem {
   question?: string;
@@ -116,7 +116,7 @@ export interface Landing {
   usage?: Features;
   features?: Features;
   stats?: Stats;
-  showcases?: Showcases;
+  shop?: Shop;
   subscribe?: Subscribe;
   faq?: FAQ;
   cta?: CTA;

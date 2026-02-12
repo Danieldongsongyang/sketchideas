@@ -555,3 +555,4 @@ export const chatMessage = table(
     index('idx_chat_message_user_id').on(table.userId, table.status),
   ]
 );
+

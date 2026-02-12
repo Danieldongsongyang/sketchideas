@@ -18,7 +18,6 @@ export const localeMessagesRootPath = '@/config/locale/messages';
 export const localeMessagesPaths = [
   'common',
   'landing',
-  'showcases',
   'blog',
   'updates',
   'pricing',
@@ -51,7 +50,7 @@ export const localeMessagesPaths = [
   'activity/chats',
   'pages/index',
   'pages/pricing',
-  'pages/showcases',
+  'pages/shop',
   'pages/blog',
   'pages/updates',
 ];

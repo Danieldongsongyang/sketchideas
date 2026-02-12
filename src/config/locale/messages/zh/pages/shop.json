@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "title": "商店",
+    "description": "购买可下载的速写练习包、线稿素材包和笔刷资源。"
+  },
+  "page": {
+    "title": "商店",
+    "detail": {
+      "back": "返回商店",
+      "buy_now": "立即购买",
+      "includes_title": "包含内容",
+      "highlights_title": "亮点",
+      "about_creator_title": "创作者信息",
+      "delivery_title": "交付与授权",
+      "related_title": "你可能也喜欢",
+      "rating_label": "评分"
+    },
+    "sections": {
+      "shop": {
+        "id": "shop",
+        "title": "商店",
+        "description": "为绘画创作者准备的数字资源：练习合集、线稿素材包与创作工具。",
+        "groups": [
+          {
+            "name": "all",
+            "title": "全部"
+          },
+          {
+            "name": "practice-bundles",
+            "title": "练习合集"
+          },
+          {
+            "name": "lineart-packs",
+            "title": "线稿素材包"
+          },
+          {
+            "name": "brush-kits",
+            "title": "笔刷包"
+          },
+          {
+            "name": "templates",
+            "title": "模板"
+          }
+        ],
+        "items": [
+          {
+            "slug": "blue-white-porcelain-collection",
+            "title": "青花瓷纹样合集（377 PNG + 矢量源文件）",
+            "description": "可商用的青花瓷装饰纹样合集，适用于包装、纺织与品牌设计。",
+            "long_description": "本合集包含大量手工整理的青花瓷风格纹样。提供透明 PNG 方便快速排版，同时提供可编辑矢量源文件，适配 Illustrator、CorelDRAW 及支持 EPS 的工具。",
+            "url": "https://sketch-ideas.com",
+            "target": "_blank",
+            "image": {
+              "src": "/imgs/shop/blue-white-porcelain/cover.jpg",
+              "alt": "青花瓷纹样合集封面"
+            },
+            "group": "lineart-packs",
+            "price": "$5.90",
+            "rating": "5.0",
+            "reviews": "124",
+            "seller_name": "Sketch Ideas Studio",
+            "seller_handle": "@sketchideas",
+            "seller_avatar": "/imgs/avatars/1.png",
+            "badge": "热销",
+            "cta_label": "查看合集",
+            "gallery": [
+              "/imgs/shop/blue-white-porcelain/cover.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-2.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-3.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-4.jpg",
+              "/imgs/shop/blue-white-porcelain/sample-10.png"
+            ],
+            "includes": [
+              "377 张高分辨率透明 PNG 元素",
+              "4 个可编辑 AI 源文件",
+              "4 个可编辑 CDR 源文件",
+              "4 个可编辑 EPS 源文件",
+              "4 张封面预览 JPG"
+            ],
+            "highlights": [
+              "素材总大小约 373 MB",
+              "适合印刷与数字商业设计",
+              "可用于包装、纺织、品牌、请柬与装饰图形",
+              "透明 PNG 工作流，拖拽即用"
+            ],
+            "creator_bio": "Sketch Ideas Studio 专注于为设计师和插画师提供可直接用于生产的高质量创作资源。",
+            "delivery": "支付后即时下载。具体商用权限以你最终售卖页面的授权条款为准。"
+          }
+        ]
+      }
+    }
+  }
+}

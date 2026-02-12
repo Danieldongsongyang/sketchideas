@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "title": "Shop",
+    "description": "Shop downloadable sketch bundles, line-art packs, and brush kits for daily drawing practice."
+  },
+  "page": {
+    "title": "Shop",
+    "detail": {
+      "back": "Back to Shop",
+      "buy_now": "Buy This Pack",
+      "includes_title": "What's Included",
+      "highlights_title": "Highlights",
+      "about_creator_title": "About the Creator",
+      "delivery_title": "Delivery & License",
+      "related_title": "You May Also Like",
+      "rating_label": "Rating"
+    },
+    "sections": {
+      "shop": {
+        "id": "shop",
+        "title": "Shop",
+        "description": "Curated digital products for artists: practice bundles, line-art collections, and creator brush kits.",
+        "groups": [
+          {
+            "name": "all",
+            "title": "All"
+          },
+          {
+            "name": "practice-bundles",
+            "title": "Practice Bundles"
+          },
+          {
+            "name": "lineart-packs",
+            "title": "Line Art Packs"
+          },
+          {
+            "name": "brush-kits",
+            "title": "Brush Kits"
+          },
+          {
+            "name": "templates",
+            "title": "Templates"
+          }
+        ],
+        "items": [
+          {
+            "slug": "blue-white-porcelain-collection",
+            "title": "Blue-White Porcelain Pattern Collection (377 PNG + Vector Source)",
+            "description": "A commercial-ready porcelain ornament collection with floral, geometric, and border motifs for packaging, textile, and branding work.",
+            "long_description": "This bundle includes a large hand-curated set of blue-and-white porcelain style motifs. It is built for fast design production: transparent PNG assets for drag-and-drop workflows plus editable vector source files for professional customization in Illustrator, CorelDRAW, and EPS-compatible tools.",
+            "url": "https://sketch-ideas.com",
+            "target": "_blank",
+            "image": {
+              "src": "/imgs/shop/blue-white-porcelain/cover.jpg",
+              "alt": "Blue and white porcelain pattern collection cover"
+            },
+            "group": "lineart-packs",
+            "price": "$5.90",
+            "rating": "5.0",
+            "reviews": "124",
+            "seller_name": "Sketch Ideas Studio",
+            "seller_handle": "@sketchideas",
+            "seller_avatar": "/imgs/avatars/1.png",
+            "badge": "Best Seller",
+            "cta_label": "View Collection",
+            "gallery": [
+              "/imgs/shop/blue-white-porcelain/cover.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-2.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-3.jpg",
+              "/imgs/shop/blue-white-porcelain/preview-4.jpg",
+              "/imgs/shop/blue-white-porcelain/sample-10.png"
+            ],
+            "includes": [
+              "377 high-resolution transparent PNG elements",
+              "4 editable AI source files",
+              "4 editable CDR source files",
+              "4 editable EPS source files",
+              "4 cover preview JPGs for quick browsing"
+            ],
+            "highlights": [
+              "Total package size: approximately 373 MB",
+              "Suitable for print and digital commercial design",
+              "Works for packaging, textiles, branding, invitations, and decor graphics",
+              "Transparent PNG workflow for fast composition"
+            ],
+            "creator_bio": "Sketch Ideas Studio builds practical visual asset packs for designers and illustrators who need fast, editable production resources.",
+            "delivery": "Instant digital download after checkout. Commercial use policy depends on your final store license terms."
+          }
+        ]
+      }
+    }
+  }
+}
