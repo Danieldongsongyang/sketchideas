@@ -7,11 +7,11 @@ import { DynamicPage } from '@/shared/types/blocks/landing';
 export const revalidate = 3600;
 
 export const generateMetadata = getMetadata({
-  metadataKey: 'pages.showcases.metadata',
-  canonicalUrl: '/showcases',
+  metadataKey: 'pages.shop.metadata',
+  canonicalUrl: '/shop',
 });
 
-export default async function ShowcasesPage({
+export default async function ShopPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -20,13 +20,13 @@ export default async function ShowcasesPage({
   setRequestLocale(locale);
 
   // get page data
-  const t = await getTranslations('pages.showcases');
+  const t = await getTranslations('pages.shop');
 
   const page: DynamicPage = {
     title: t.raw('page.title'),
     sections: {
-      showcases: {
-        ...t.raw('page.sections.showcases'),
+      shop: {
+        ...t.raw('page.sections.shop'),
       },
     },
   };

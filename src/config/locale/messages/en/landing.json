@@ -19,46 +19,14 @@
           "icon": "Sparkles"
         },
         {
-          "title": "Showcases",
-          "url": "/showcases",
+          "title": "Shop",
+          "url": "/shop",
           "icon": "Box"
         },
-
         {
           "title": "Prompt",
-          "icon": "Pencil",
-          "children": [
-            {
-              "title": "Easy Sketch Ideas",
-              "description": "Start daily practice with easy sketch ideas and sketches drawing ideas easy prompts.",
-              "url": "/#usage",
-              "icon": "PenLine"
-            },
-            {
-              "title": "Beginner Lanes",
-              "description": "Use sketching ideas for beginners plus easy sketch drawing ideas to build momentum.",
-              "url": "/#benefits",
-              "icon": "GraduationCap"
-            },
-            {
-              "title": "Sketchbook Packs",
-              "description": "Generate sketchbook ideas, sketchbook cover ideas, chunky sketchbook ideas, and pencil sketchbook ideas.",
-              "url": "/#features",
-              "icon": "NotebookPen"
-            },
-            {
-              "title": "Style Mix",
-              "description": "Explore cool sketch ideas, cute sketch ideas, and pen sketch ideas in one click.",
-              "url": "/#testimonials",
-              "icon": "Palette"
-            },
-            {
-              "title": "Idea Variations",
-              "description": "Rotate drawing ideas sketch, sketch drawing ideas, sketches ideas, and fresh sketching ideas.",
-              "url": "/#sketch-ideas-spin",
-              "icon": "Lightbulb"
-            }
-          ]
+          "url": "/ai-image-generator",
+          "icon": "Pencil"
         },
         {
           "title": "Content",
@@ -116,7 +84,6 @@
     "show_sign": true,
     "show_theme": true,
     "show_locale": false
-
   },
   "footer": {
     "id": "footer",

@@ -157,11 +157,11 @@ features/
 
 ### 3.1 页面路由
 
-**文件**: `src/app/[locale]/(landing)/showcases/page.tsx`（已存在，需改造）
+**文件**: `src/app/[locale]/(landing)/shop/page.tsx`（已存在，需改造）
 
 ### 3.2 数据模型
 
-**图集配置**: `content/showcases/` 目录或数据库
+**图集配置**: `content/shop/` 目录或数据库
 
 **示例**:
 ```yaml
@@ -178,7 +178,7 @@ features/
 ### 3.3 组件结构
 
 ```
-showcases/
+shop/
 ├── page.tsx                    # 页面入口
 ├── components/
 │   ├── collection-grid.tsx     # 图集网格
@@ -275,7 +275,7 @@ ai-sketch/
       "sections": { ... }
     }
   },
-  "showcases": { ... },
+  "shop": { ... },
   "ai-sketch": { ... }
 }
 ```

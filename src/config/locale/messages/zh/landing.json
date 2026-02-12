@@ -20,7 +20,7 @@
         },
         {
           "title": "案例展示",
-          "url": "/showcases",
+          "url": "/shop",
           "icon": "Box"
         },
         {
@@ -135,7 +135,7 @@
             },
             {
               "title": "案例展示",
-              "url": "/showcases",
+              "url": "/shop",
               "target": "_self"
             },
             {

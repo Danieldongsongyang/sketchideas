@@ -11,8 +11,8 @@ export * from './features-step';
 export * from './features-flow';
 export * from './features-media';
 
-export * from './showcases';
-export * from './showcases-flow';
+export * from './shop';
+export * from './shop-flow';
 
 export * from './logos';
 export * from './stats';

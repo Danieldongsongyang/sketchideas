@@ -7,8 +7,6 @@
       "introduce",
       "benefits",
       "usage",
-      "features",
-      "stats",
       "testimonials",
       "faq",
       "cta"
@@ -16,11 +14,16 @@
     "sections": {
       "hero": {
         "id": "hero",
-        "title": "Sketch ideas",
-        "className": "pt-12 pb-6 md:pt-6 md:pb-0",
+        "title": "Sketch Ideas",
+        "logo": {
+          "src": "/logo.png",
+          "alt": "Sketch Ideas",
+          "width": 44,
+          "height": 44
+        },
+        "description": "Create stunning line-art references in seconds.",
+        "className": "pt-16 pb-6 md:pt-18 md:pb-6",
         "show_award": false,
-
-
         "background_image": {
           "src": "/imgs/bg/cartoon.png",
           "alt": "hero"
@@ -28,9 +31,20 @@
       },
       "sketch-ideas-spin": {
         "id": "sketch-ideas-spin",
-        "className": "pt-12 pb-6 md:pt-1 md:pb-6",
+        "variant": "hero-panel",
+        "title": "AI Sketch Generator",
+        "description": "A curated randomizer for line-art prompts and references. Pick a category, press SPIN, then keep exploring with NEXT.",
+        "panel_title": "Generate a New Sketch",
+        "panel_hint": "What do you want to sketch today?",
+        "chips": [
+          "Line Art",
+          "No Color",
+          "No Lighting",
+          "No Composition"
+        ],
+        "className": "pt-0 pb-6 md:pt-0 md:pb-10",
         "block": "sketch-ideas-spin",
-        "spin_delay_ms": 80
+        "spin_delay_ms": 120
       },
 
 
@@ -167,63 +181,8 @@
         ],
         "className": "bg-muted"
       },
-      "features": {
-        "id": "features",
-        "title": "MVP features that matter",
-        "description": "Everything needed for fast, repeatable sketch practice.",
-        "items": [
-          {
-            "title": "Slot-style spin",
-            "description": "0.5s spin animation with instant results.",
-            "icon": "RiNextjsFill"
-          },
-          {
-            "title": "Controlled randomness",
-            "description": "Pulls from a pre-generated pool with smart variety.",
-            "icon": "RiKey2Fill"
-          },
-          {
-            "title": "Next without reset",
-            "description": "Keep spinning inside your current filters.",
-            "icon": "RiDatabase2Line"
-          },
-          {
-            "title": "Line art plus prompt",
-            "description": "Reference image paired with a crisp drawing prompt.",
-            "icon": "RiCloudy2Fill"
-          },
-          {
-            "title": "One-click save",
-            "description": "Download WebP and copy the prompt with feedback.",
-            "icon": "RiBarChart2Line"
-          },
-          {
-            "title": "Shareable",
-            "description": "Pinterest and X sharing with a ready share card.",
-            "icon": "RiRobot2Line"
-          }
-        ]
-      },
-      "stats": {
-        "id": "stats",
-        "title": "MVP success targets",
-        "description": "What we measure in the first 30 days.",
-        "items": [
-          {
-            "title": "3-5 min",
-            "description": "Avg session time"
-          },
-          {
-            "title": "15+",
-            "description": "Spins per session"
-          },
-          {
-            "title": "<=1.5s",
-            "description": "Average load time"
-          }
-        ],
-        "className": "bg-muted"
-      },
+
+
       "testimonials": {
         "id": "testimonials",
         "title": "What artists say",

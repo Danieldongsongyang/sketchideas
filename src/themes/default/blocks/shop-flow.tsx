@@ -11,7 +11,7 @@ import { Button } from '@/shared/components/ui/button';
 import { cn } from '@/shared/lib/utils';
 import { Section } from '@/shared/types/blocks/landing';
 
-export function ShowcasesFlow({
+export function ShopFlow({
   section,
   className,
 }: {

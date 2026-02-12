@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "ShipAny Template Two",
-    "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups. Ship Fast with a variety of templates and components.",
-    "keywords": "shipany, shipany-boilerplate, shipany-template-two-demo"
+    "title": "Sketch Ideas",
+    "description": "Sketch Ideas is a random line-art idea generator with category filters. Spin to get instant sketchbook prompts, drawing references, and fresh practice ideas.",
+    "keywords": "sketch ideas, drawing prompts, line art generator, line art references, sketchbook prompts, random drawing ideas, beginner sketch practice"
   },
   "sign": {
     "sign_in_title": "Sign In",

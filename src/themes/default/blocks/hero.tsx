@@ -22,6 +22,19 @@ export function Hero({
   if (highlightText) {
     texts = section.title?.split(highlightText, 2);
   }
+  const logo = section.logo as
+    | {
+        src?: string;
+        alt?: string;
+        width?: number;
+        height?: number;
+      }
+    | undefined;
+  const hasLogo = typeof logo?.src === 'string' && logo.src.length > 0;
+  const logoWidth = typeof logo?.width === 'number' ? logo.width : 44;
+  const logoHeight = typeof logo?.height === 'number' ? logo.height : 44;
+  const titleClassName =
+    'text-foreground text-3xl font-semibold text-balance sm:text-5xl';
 
   return (
     <section
@@ -58,21 +71,43 @@ export function Hero({
 
       <div className="relative mx-auto max-w-full px-4 text-center md:max-w-5xl">
         {texts && texts.length > 0 ? (
-          <h1 className="text-foreground text-4xl font-semibold text-balance sm:mt-2 sm:text-6xl">
-            {texts[0]}
-            <Highlighter action="underline" color="#FF9800">
-              {highlightText}
-            </Highlighter>
-            {texts[1]}
-          </h1>
+          <div className="mt-0 flex items-center justify-center gap-3 sm:mt-12">
+            {hasLogo ? (
+              <Image
+                src={logo.src || ''}
+                alt={logo.alt || section.title || 'Logo'}
+                width={logoWidth}
+                height={logoHeight}
+                className="h-10 w-10 shrink-0 rounded-md object-contain"
+                unoptimized={logo.src?.startsWith('http')}
+              />
+            ) : null}
+            <h1 className={titleClassName}>
+              {texts[0]}
+              <Highlighter action="underline" color="#FF9800">
+                {highlightText}
+              </Highlighter>
+              {texts[1]}
+            </h1>
+          </div>
         ) : (
-          <h1 className="text-foreground text-4xl font-semibold text-balance sm:mt-12 sm:text-6xl">
-            {section.title}
-          </h1>
+          <div className="mt-0 flex items-center justify-center gap-3 sm:mt-12">
+            {hasLogo ? (
+              <Image
+                src={logo.src || ''}
+                alt={logo.alt || section.title || 'Logo'}
+                width={logoWidth}
+                height={logoHeight}
+                className="h-10 w-10 shrink-0 rounded-md object-contain"
+                unoptimized={logo.src?.startsWith('http')}
+              />
+            ) : null}
+            <h1 className={titleClassName}>{section.title}</h1>
+          </div>
         )}
 
         <p
-          className="text-muted-foreground mt-8 mb-8 text-lg text-balance"
+          className="text-muted-foreground mt-4 mb-8 text-lg text-balance"
           dangerouslySetInnerHTML={{ __html: section.description ?? '' }}
         />
 
